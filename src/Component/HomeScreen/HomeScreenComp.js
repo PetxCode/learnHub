@@ -4,6 +4,8 @@ import HomeScreen from "./HomeScreen";
 import BenefitComp from "./BenefitComp";
 import JoinOurs from "../Others/JoinOurs";
 import { Reasons } from "../Others/Reasons";
+import { Community } from "./../Others/Community";
+import ExpertSkills from "./../Expert/ExpertSkills";
 
 const HomeScreenComp = () => {
   return (
@@ -13,6 +15,8 @@ const HomeScreenComp = () => {
         <BenefitComp />
         <JoinOurs />
         <Reasons />
+        <ExpertSkills />
+        <Community />
       </Wrapper>
     </Container>
   );
@@ -24,6 +28,7 @@ const Container = styled.div`
   min-height: 100vh;
   width: 100%;
   padding-top: 100px;
+  background-color: #f9f9f8;
 `;
 const Wrapper = styled.div`
   display: flex;

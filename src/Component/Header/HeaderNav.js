@@ -36,13 +36,15 @@ const HeaderNav = ({ bg }) => {
             </Icon>
             <span>About</span>
           </Nav>
-          <Nav>
+
+          <LogIn>
             <Icon>
               {" "}
               <AiFillAppstore />{" "}
             </Icon>
-            <span>Courses</span>
-          </Nav>
+            Courses
+          </LogIn>
+          <LogIn bg>Hire Talent</LogIn>
         </Navigation>
         <LogIn>Sign Up</LogIn>
         <Menu>
@@ -64,7 +66,7 @@ const LogIn = styled.button`
   border-radius: 5px;
   width: 150px;
   height: 50px;
-  background-color: #09386d;
+  background-color: ${({ bg }) => (bg ? "#55a350" : "#09386d")};
   color: white;
   margin-right: 20px;
   font-family: Raleway;
@@ -73,6 +75,9 @@ const LogIn = styled.button`
   transform: scale(1);
   transition: all 350ms;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   :hover {
     transform: scale(0.98);

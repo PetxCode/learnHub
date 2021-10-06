@@ -87,7 +87,10 @@ const WrapperProps = styled.div`
 const Container = styled.div`
   margin-top: 80px;
   width: 100%;
-  height: 600px;
+  min-height: 450px;
+  height: 100%;
+
+  padding-bottom: 30px;
 `;
 const Wrapper = styled.div`
   display: flex;

@@ -28,7 +28,6 @@ const App = () => {
     <Container>
       <HeaderNav bg={toggle ? "bg" : ""} />
       <HomeScreenComp />
-      <ExpertSkills />
     </Container>
   );
 };
