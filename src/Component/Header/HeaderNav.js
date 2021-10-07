@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import logo from "../assets/b.png";
 import SiderBar from "./SiderBar";
 import Fade from "react-reveal";
+import { Link } from "react-router-dom";
 
 const HeaderNav = ({ bg }) => {
   const [toggle, setToggle] = useState(false);
@@ -23,28 +24,32 @@ const HeaderNav = ({ bg }) => {
       <Wrapper>
         <Logo src={logo} />
         <Navigation>
-          <Nav>
+          <Nav to="/">
             <Icon>
               <AiFillHome />{" "}
             </Icon>
             <span>Home</span>
           </Nav>
-          <Nav>
+          <Nav to="/">
             <Icon>
               {" "}
               <BsFillBookFill />{" "}
             </Icon>
             <span>About</span>
           </Nav>
-          <Nav>
+
+          <LogIn to="/">
             <Icon>
               {" "}
               <AiFillAppstore />{" "}
             </Icon>
-            <span>Courses</span>
-          </Nav>
+            Courses
+          </LogIn>
+          <LogIn to="/hire" bg>
+            Hire Talent
+          </LogIn>
         </Navigation>
-        <LogIn>Sign Up</LogIn>
+        <LogIn to="/">Sign Up</LogIn>
         <Menu>
           <GiHamburgerMenu onClick={onToggle} />
         </Menu>
@@ -58,13 +63,13 @@ const HeaderNav = ({ bg }) => {
 
 export default HeaderNav;
 
-const LogIn = styled.button`
+const LogIn = styled(Link)`
   outline: none;
   border: 0;
   border-radius: 5px;
   width: 150px;
   height: 50px;
-  background-color: #09386d;
+  background-color: ${({ bg }) => (bg ? "#55a350" : "#09386d")};
   color: white;
   margin-right: 20px;
   font-family: Raleway;
@@ -73,11 +78,17 @@ const LogIn = styled.button`
   transform: scale(1);
   transition: all 350ms;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
 
   :hover {
     transform: scale(0.98);
     cursor: pointer;
     background-color: #0c488b;
+    background-color: ${({ bg }) => (bg ? "#55a350" : "#09386d")};
   }
 
   @media screen and (max-width: 800px) {
@@ -100,12 +111,13 @@ const Icon = styled.div`
   margin-right: 5px;
 `;
 
-const Nav = styled.div`
+const Nav = styled(Link)`
   color: #09386d;
   display: flex;
   align-items: center;
   cursor: pointer;
   margin: 0 15px;
+  text-decoration: none;
 
   span {
     font-weight: bold;
