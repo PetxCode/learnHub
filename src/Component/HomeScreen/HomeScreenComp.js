@@ -5,6 +5,7 @@ import BenefitComp from "./BenefitComp";
 import JoinOurs from "../Others/JoinOurs";
 import { Reasons } from "../Others/Reasons";
 import { Community } from "./../Others/Community";
+import OurStack from "./../Others/OurStack";
 import ExpertSkills from "./../Expert/ExpertSkills";
 
 const HomeScreenComp = () => {
@@ -17,6 +18,7 @@ const HomeScreenComp = () => {
         <Reasons />
         <ExpertSkills />
         <Community />
+        <OurStack />
       </Wrapper>
     </Container>
   );
