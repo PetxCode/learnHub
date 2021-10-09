@@ -5,6 +5,7 @@ import img from "../Component/assets/arr.png";
 import HireProps from "./HireProps";
 import HireTalent from "./HireTalent";
 import HowTo from "./HowTo";
+import Students from "./Students";
 
 const HirePage = () => {
   return (
@@ -14,6 +15,7 @@ const HirePage = () => {
         <HireProps />
         <HowTo />
         <HireTalent />
+        <Students />
       </Wrapper>
     </COntainer>
   );
