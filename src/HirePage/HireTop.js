@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-const HireTop = ({ img, text, title }) => {
+const HireTop = ({ img, text, text2, title, bg, bg1 }) => {
   return (
-    <Container>
+    <Container bg={bg}>
       <Wrapper>
-        <Image src={img} />
+        <Image src={img} style={{ backgroundColor: bg1 }} />
         <Title>{title}</Title>
         <SubTitle>{text}</SubTitle>
+        <SubTitle>{text2}</SubTitle>
       </Wrapper>
     </Container>
   );
@@ -16,40 +17,44 @@ const HireTop = ({ img, text, title }) => {
 export default HireTop;
 
 const Image = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background-color: red;
+  object-fit: contain;
   margin: 30px 0;
+  padding: 20px;
 `;
 const Title = styled.div`
   font-weight: 900;
-  font-size: 35px;
+  font-size: 40px;
   text-align: center;
   margin: 0 auto;
-  /* width: 92%; */
+  width: 92%;
   margin-bottom: 20px;
   line-height: 1.2;
 `;
 const SubTitle = styled.div`
-  font-size: 25px;
+  font-size: 30px;
   margin: 0 30px;
   text-align: center;
   line-height: 1.5;
+  padding-bottom: 20px;
 `;
 
 const Container = styled.div`
-  padding-top: 100px;
   width: 100%;
+  height: 600px;
   height: 100%;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
+  background-color: ${({ bg }) => (bg ? "#09386D" : "transparent")};
+  color: ${({ bg }) => (bg ? "white" : "black")};
 `;
 const Wrapper = styled.div`
   min-width: 400px;
-  width: 60%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;

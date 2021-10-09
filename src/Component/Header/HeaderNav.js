@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AiFillHome, AiFillAppstore, AiFillContacts } from "react-icons/ai";
 import { BsFillBookFill } from "react-icons/bs";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { GiHamburgerMenu, GiSkills } from "react-icons/gi";
 import logo from "../assets/b.png";
 import SiderBar from "./SiderBar";
 import Fade from "react-reveal";
@@ -46,10 +46,14 @@ const HeaderNav = ({ bg }) => {
             Courses
           </LogIn>
           <LogIn to="/hire" bg>
+            <Icon>
+              {" "}
+              <GiSkills />{" "}
+            </Icon>
             Hire Talent
           </LogIn>
         </Navigation>
-        <LogIn to="/">Sign Up</LogIn>
+        <LogIn to="/dashboard">Sign Up</LogIn>
         <Menu>
           <GiHamburgerMenu onClick={onToggle} />
         </Menu>
@@ -91,7 +95,7 @@ const LogIn = styled(Link)`
     background-color: ${({ bg }) => (bg ? "#55a350" : "#09386d")};
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 `;
@@ -99,11 +103,12 @@ const LogIn = styled(Link)`
 const Menu = styled.div`
   display: none;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: block;
     margin-right: 30px;
     font-size: 35px;
     color: #09386d;
+    cursor: pointer;
   }
 `;
 
@@ -167,7 +172,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: display;
     justify-content: space-between;
     width: 100%;
@@ -178,7 +183,7 @@ const Navigation = styled.div`
   align-items: center;
   flex: 1;
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 1000px) {
     display: none;
   }
 `;
