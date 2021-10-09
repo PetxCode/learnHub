@@ -137,7 +137,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  height: 500px;
+  /* height: 500px; */
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

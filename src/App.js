@@ -31,7 +31,7 @@ const App = () => {
   return (
     <Container>
       <BrowserRouter>
-        {/* <HeaderNav bg={toggle ? "bg" : ""} /> */}
+        <HeaderNav bg={toggle ? "bg" : ""} />
         <Switch>
           <Route path="/" exact component={HomeScreenComp} />
           <Route path="/hire" exact component={HirePage} />

@@ -158,12 +158,9 @@ const Container1 = styled.div`
   flex-direction: column;
   background-color: lightblue;
   transition: all 1050ms;
+  position: relative;
 `;
-const Wrapper1 = styled.div`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-`;
+
 const Container = styled.div`
   width: 450px;
   height: 100%;
@@ -173,6 +170,13 @@ const Container = styled.div`
   background-color: lightblue;
   transition: all 1050ms;
 `;
+
+const Wrapper1 = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 const MainContainer = styled.div`
   /* width: 450px; */
   height: 100%;
