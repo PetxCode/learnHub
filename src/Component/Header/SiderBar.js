@@ -34,7 +34,7 @@ const SiderBar = ({ setToggle }) => {
             </Nav>
             <Space />
 
-            <LogIn to="/">
+            <LogIn to="/courses">
               <AiFillAppstore
                 style={{ marginRight: "10px", fontSize: "25px" }}
               />{" "}

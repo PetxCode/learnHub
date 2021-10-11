@@ -84,9 +84,11 @@ const Container = styled.div`
   height: 100%;
   min-height: 70vh;
   color: #09386d;
+  display: flex;
+  justify-content: center;
 `;
 const Wrapper = styled.div`
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   margin: 40px 0;
   display: flex;

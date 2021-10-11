@@ -34,7 +34,7 @@ const Title = styled.div`
   line-height: 1.2;
 `;
 const SubTitle = styled.div`
-  font-size: 30px;
+  font-size: 20px;
   margin: 0 30px;
   text-align: center;
   line-height: 1.5;

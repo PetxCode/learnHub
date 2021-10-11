@@ -1,0 +1,175 @@
+[
+  {
+    "id": 1,
+    "name": "FrontEnd Development",
+    "desc": "In this course, you will learn React from the beginner level to a expert level...",
+    "focus": [
+      { "area": "React" },
+      { "area": "JavaScript" },
+      { "area": "Node" },
+      { "area": "Event" },
+      { "area": "Props" }
+    ],
+    "details": "We deliver an intensive 6-week internship where the front-end development (React) interns learn React from the beginner level to an expert level and additional soft skills in an immersive environment. Through an agile delivery methodology, mentor matching and leadership modules, the elite interns will be equipped with techniques and a leadership mindset that enables them to work competitively in any team globally.As part of the curriculum, we expose the interns to real-life applications and projects. During these projects, we ensure they are well-equipped to design programs both individually and in teams. This aspect of the program provides the interns with verifiable work experience and the confidence to excel in their jobs after graduation.The curriculum is broken down into 6 units: There will be content for each of the 6 units.We have a React course planned for the interns to learn and become proficient upon graduation from the program",
+    "scheme": [
+      {
+        "title": "Introduction To React",
+        "desc": "Event Handling, Binding Event Handlers, Methods as Props, Conditional Rendering, List Rendering, Styling, Basic Form Handling, More on Life-Cycle Methods, Fragments"
+      },
+
+      {
+        "title": "Event/Basic Form Handling, Styling & Life-Cycle Methods",
+        "desc": "Intro, Hello World, Folder Structure, Components, Functional Components, Class Components, Hooks Update, JSX, Props, State, Intro to Life-Cycle Methods"
+      },
+
+      {
+        "title": "Pure Components, Class Components & HTTP Request Handling",
+        "desc": "Pure Components, Memo, Refs, Portals, Error Boundary, Higher Order Components, Render Props, Context, HTTP & React, HTTP Get Request, HTTP Post Request"
+      },
+
+      {
+        "title": "React Hooks, Functional Components & Request Handling",
+        "desc": "useState Hook, useEffect Hook, Data Fetching with useEffect"
+      },
+
+      {
+        "title": "More on React Hooks & State Management with Context API",
+        "desc": "useContext Hook, useReducer Hook, useState vs useReducer, useCallback Hook, useMemo Hook, useRef Hook"
+      },
+
+      {
+        "title": "More on React Hooks - Custom Hooks & React Interview Questions",
+        "desc": "Custom Hooks, useDocumentTitle Custom Hook, useCounter Custom Hook, useInput Custom Hook, React Interview Questions"
+      }
+    ],
+    "intructors": [
+      {
+        "name": "Peter Oti",
+        "stack": "FullStack Developer",
+        "img": " img/peter.png"
+      },
+      {
+        "name": "Peter Oti2",
+        "stack": "FullStack Developer",
+        "img": "  img/peter.png"
+      }
+    ],
+    "icon": "img/react.svg",
+    "mainIcon": "img/react.png"
+  },
+  {
+    "id": 2,
+    "name": "BackEnd Development",
+    "desc": "In this course, you will learn React from the beginner level to a expert level...",
+    "focus": [
+      { "area": "Express" },
+      { "area": "JavaScript" },
+      { "area": "Node" },
+      { "area": "PostMan" }
+    ],
+    "details": "We deliver an intensive 6-week internship where the front-end development (React) interns learn React from the beginner level to an expert level and additional soft skills in an immersive environment. Through an agile delivery methodology, mentor matching and leadership modules, the elite interns will be equipped with techniques and a leadership mindset that enables them to work competitively in any team globally.As part of the curriculum, we expose the interns to real-life applications and projects. During these projects, we ensure they are well-equipped to design programs both individually and in teams. This aspect of the program provides the interns with verifiable work experience and the confidence to excel in their jobs after graduation.The curriculum is broken down into 6 units: There will be content for each of the 6 units.We have a React course planned for the interns to learn and become proficient upon graduation from the program",
+    "scheme": [
+      {
+        "title": "Introduction To React",
+        "desc": "Event Handling, Binding Event Handlers, Methods as Props, Conditional Rendering, List Rendering, Styling, Basic Form Handling, More on Life-Cycle Methods, Fragments"
+      },
+
+      {
+        "title": "Event/Basic Form Handling, Styling & Life-Cycle Methods",
+        "desc": "Intro, Hello World, Folder Structure, Components, Functional Components, Class Components, Hooks Update, JSX, Props, State, Intro to Life-Cycle Methods"
+      },
+
+      {
+        "title": "Pure Components, Class Components & HTTP Request Handling",
+        "desc": "Pure Components, Memo, Refs, Portals, Error Boundary, Higher Order Components, Render Props, Context, HTTP & React, HTTP Get Request, HTTP Post Request"
+      },
+
+      {
+        "title": "React Hooks, Functional Components & Request Handling",
+        "desc": "useState Hook, useEffect Hook, Data Fetching with useEffect"
+      },
+
+      {
+        "title": "More on React Hooks & State Management with Context API",
+        "desc": "useContext Hook, useReducer Hook, useState vs useReducer, useCallback Hook, useMemo Hook, useRef Hook"
+      },
+
+      {
+        "title": "More on React Hooks - Custom Hooks & React Interview Questions",
+        "desc": "Custom Hooks, useDocumentTitle Custom Hook, useCounter Custom Hook, useInput Custom Hook, React Interview Questions"
+      }
+    ],
+    "intructors": [
+      {
+        "name": "Peter Oti",
+        "stack": "FullStack Developer",
+        "img": " img/peter.png"
+      },
+      {
+        "name": "Peter Oti2",
+        "stack": "FullStack Developer",
+        "img": "  img/peter.png"
+      }
+    ],
+    "icon": "img/react.svg",
+    "mainIcon": "img/react.png"
+  },
+  {
+    "id": 3,
+    "name": "FrontEnd Development",
+    "desc": "In this course, you will learn React from the beginner level to a expert level...",
+    "focus": [
+      { "area": "React" },
+      { "area": "JavaScript" },
+      { "area": "Node" },
+      { "area": "Event" },
+      { "area": "Props" }
+    ],
+    "details": "We deliver an intensive 6-week internship where the front-end development (React) interns learn React from the beginner level to an expert level and additional soft skills in an immersive environment. Through an agile delivery methodology, mentor matching and leadership modules, the elite interns will be equipped with techniques and a leadership mindset that enables them to work competitively in any team globally.As part of the curriculum, we expose the interns to real-life applications and projects. During these projects, we ensure they are well-equipped to design programs both individually and in teams. This aspect of the program provides the interns with verifiable work experience and the confidence to excel in their jobs after graduation.The curriculum is broken down into 6 units: There will be content for each of the 6 units.We have a React course planned for the interns to learn and become proficient upon graduation from the program",
+    "scheme": [
+      {
+        "title": "Introduction To React",
+        "desc": "Event Handling, Binding Event Handlers, Methods as Props, Conditional Rendering, List Rendering, Styling, Basic Form Handling, More on Life-Cycle Methods, Fragments"
+      },
+
+      {
+        "title": "Event/Basic Form Handling, Styling & Life-Cycle Methods",
+        "desc": "Intro, Hello World, Folder Structure, Components, Functional Components, Class Components, Hooks Update, JSX, Props, State, Intro to Life-Cycle Methods"
+      },
+
+      {
+        "title": "Pure Components, Class Components & HTTP Request Handling",
+        "desc": "Pure Components, Memo, Refs, Portals, Error Boundary, Higher Order Components, Render Props, Context, HTTP & React, HTTP Get Request, HTTP Post Request"
+      },
+
+      {
+        "title": "React Hooks, Functional Components & Request Handling",
+        "desc": "useState Hook, useEffect Hook, Data Fetching with useEffect"
+      },
+
+      {
+        "title": "More on React Hooks & State Management with Context API",
+        "desc": "useContext Hook, useReducer Hook, useState vs useReducer, useCallback Hook, useMemo Hook, useRef Hook"
+      },
+
+      {
+        "title": "More on React Hooks - Custom Hooks & React Interview Questions",
+        "desc": "Custom Hooks, useDocumentTitle Custom Hook, useCounter Custom Hook, useInput Custom Hook, React Interview Questions"
+      }
+    ],
+    "intructors": [
+      {
+        "name": "Peter Oti",
+        "stack": "FullStack Developer",
+        "img": " img/peter.png"
+      },
+      {
+        "name": "Peter Oti2",
+        "stack": "FullStack Developer",
+        "img": "  img/peter.png"
+      }
+    ],
+    "icon": "img/react.svg",
+    "mainIcon": "img/react.png"
+  }
+]

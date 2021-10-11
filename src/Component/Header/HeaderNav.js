@@ -38,7 +38,7 @@ const HeaderNav = ({ bg }) => {
             <span>About</span>
           </Nav>
 
-          <LogIn to="/">
+          <LogIn to="/courses">
             <Icon>
               {" "}
               <AiFillAppstore />{" "}
@@ -58,9 +58,11 @@ const HeaderNav = ({ bg }) => {
           <GiHamburgerMenu onClick={onToggle} />
         </Menu>
       </Wrapper>
-      <Fade left when={toggle}>
+      {/* <Fade left when={toggle}>
         <SiderBar setToggle={setToggle} />
-      </Fade>
+      </Fade> */}
+
+      {toggle ? <SiderBar setToggle={setToggle} /> : null}
     </Container>
   );
 };

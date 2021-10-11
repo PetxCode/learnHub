@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import data from "./HowToHire.json";
 
 const HowTo = () => {
-  // const [data, setData] = useState([]);
   return (
     <Container>
       <Wrapper>
@@ -24,14 +23,15 @@ export default HowTo;
 const Title = styled.div`
   padding-top: 80px;
   font-weight: 900;
-  font-size: 40px;
+  font-size: 35px;
   text-align: center;
 `;
 const COntent = styled.div`
   padding-top: 50px;
-  font-size: 25px;
+  font-size: 20px;
   text-align: center;
   margin: 0 15px;
+  line-height: 1.5;
 `;
 
 const Ring = styled.div`
@@ -39,7 +39,7 @@ const Ring = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 5px solid gray;
+  border: 5px solid rgba(9, 56, 109, 0.8);
   top: -50px;
   display: flex;
   align-items: center;
@@ -47,6 +47,7 @@ const Ring = styled.div`
   font-size: 30px;
   background-color: white;
   color: black;
+  /* color: #09386d; */
 `;
 
 const Container = styled.div`
