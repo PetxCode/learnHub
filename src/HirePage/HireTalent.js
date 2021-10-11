@@ -27,7 +27,7 @@ export default HirePage;
 
 const Title = styled.div`
   font-weight: 900;
-  font-size: 50px;
+  font-size: 40px;
   text-align: center;
 
   span {
@@ -35,8 +35,8 @@ const Title = styled.div`
   }
 `;
 const SubTitle = styled.div`
-  font-size: 30px;
-  margin: 0 30px;
+  font-size: 23px;
+  margin: 0 20px;
   text-align: center;
   line-height: 1.5;
   min-width: 360px;
@@ -55,8 +55,9 @@ const COntainer = styled.div`
   padding-top: 60px;
   justify-content: center;
   display: flex;
-  background-color: ${({ bg }) => (bg ? "transparent" : "lightgray")};
+  background-color: ${({ bg }) => (bg ? "transparent" : "#f3f3f1")};
   color: ${({ bg }) => (bg ? "white" : "black")};
+  /* color:#f3f3f1; */
   padding-bottom: 50px;
 `;
 

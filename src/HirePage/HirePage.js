@@ -2,19 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import HireTop from "./HireTop";
 import img from "../Component/assets/arr.png";
-import HireProps from "./HireProps";
 import HireTalent from "./HireTalent";
 import HowTo from "./HowTo";
 import Students from "./Students";
+import arr from "../Component/assets/arr.png";
 
 const HirePage = () => {
   return (
     <COntainer>
       <Wrapper>
         <HireTalent />
-        <HireProps />
         <HowTo />
-        <HireTalent />
         <Students />
       </Wrapper>
     </COntainer>
