@@ -53,7 +53,7 @@ const HeaderNav = ({ bg }) => {
             Hire Talent
           </LogIn>
         </Navigation>
-        <LogIn to="/dashboard">Sign Up</LogIn>
+        <LogIn to="/register">Sign Up</LogIn>
         <Menu>
           <GiHamburgerMenu onClick={onToggle} />
         </Menu>

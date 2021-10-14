@@ -12,6 +12,7 @@ import StudentDetail from "./HirePage/StudentDetail";
 import Detail from "./HirePage/Detail";
 import Courses from "./Component/Courses/Courses";
 import { CourseDetail } from "./Component/Courses/CourseDetail";
+import { Register } from "./Register/Register";
 
 const App = () => {
   const [toggle, setToggle] = useState(false);
@@ -38,6 +39,7 @@ const App = () => {
         <HeaderNav bg={toggle ? "bg" : ""} />
         <Switch>
           <Route path="/" exact component={HomeScreenComp} />
+          <Route path="/register" exact component={Register} />
           <Route path="/hire" exact component={HirePage} />
           <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/student/:id" exact component={StudentDetail} />

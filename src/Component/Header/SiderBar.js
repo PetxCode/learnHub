@@ -47,7 +47,7 @@ const SiderBar = ({ setToggle }) => {
             </LogIn>
           </Navigation>
 
-          <LogIn to="/dashboard">Sign Up</LogIn>
+          <LogIn to="/register">Sign Up</LogIn>
         </Wrapper>
       </Container>
     </MainContainer>
