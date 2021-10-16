@@ -12,15 +12,7 @@ export const Dashboard = () => {
   return (
     <Container>
       <Wrapper>
-        <Sider>
-          {" "}
-          <Fade>
-            <SiderDeshBoard />
-          </Fade>
-        </Sider>
-        <Sider1>
-          <DeshBoardHome />
-        </Sider1>
+        <DeshBoardHome />
       </Wrapper>
     </Container>
   );

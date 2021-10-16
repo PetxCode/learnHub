@@ -2,13 +2,31 @@ import React from "react";
 import styled from "styled-components";
 import data from "./studentData.json";
 import { Link } from "react-router-dom";
+import { app } from "./../base";
 
 const Students = () => {
-  console.log(data);
+  const [data, setData] = React.useState([]);
+
+  const fetchData = async () => {
+    await app
+      .firestore()
+      .collection("hire")
+      .onSnapshot((snapShot) => {
+        const i = [];
+        snapShot.forEach((doc) => {
+          i.push({ ...doc.data(), id: doc.id });
+        });
+        setData(i);
+      });
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Container>
       <Wrapper>
-        {data.map((props, i) => (
+        {data?.map((props, i) => (
           <Card key={props.i}>
             <Content>
               <Title>
@@ -28,7 +46,7 @@ const Students = () => {
 
             <SkillHold>
               <Skill bg>
-                {props.pry.map((skill) => (
+                {props.pry?.map((skill) => (
                   <Skill1 bg>{skill.skill}</Skill1>
                 ))}
               </Skill>
@@ -39,7 +57,7 @@ const Students = () => {
 
             <SkillHold>
               <Skill>
-                {props.sec.map((skill, i) => (
+                {props.sec?.map((skill, i) => (
                   <Skill1 key={skill.i}>{skill.skill}</Skill1>
                 ))}
               </Skill>

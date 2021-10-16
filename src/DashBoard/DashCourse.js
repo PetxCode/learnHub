@@ -2,48 +2,35 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import data from "./course.json";
 import { useParams } from "react-router-dom";
-import { app } from "./../../base";
 
-export const CourseDetail = () => {
+export const DashCourse = () => {
   const { id } = useParams();
   const [myData, setMyData] = useState([]);
 
-  const fetchDataDetail = async (id) => {
-    await app
-      .firestore()
-      .collection("course")
-      .doc(id)
-      .get()
-      .then((file) => {
-        setMyData(file.data());
-        console.log("firebase data: ", myData);
-      });
-  };
-
   useEffect(() => {
-    fetchDataDetail(id);
-  }, []);
+    setMyData(data[id - 1]);
+  }, [myData]);
   return (
     <Container>
       <Wrapper>
         <TopHolder>
-          <Div>Course Detail:</Div>
+          <Div>Course Detail</Div>
           <Desc>{myData?.details}</Desc>
           <Button>Add to Cart</Button>
         </TopHolder>
-        <Image src={myData?.mainIcon} />
+        <Image src={myData?.mainIcons} />
       </Wrapper>
       <Space />
 
       <Infomation>
         <Info>Course Information</Info>
-        <Welcome>Welcome to {myData?.name}, learning page!</Welcome>
+        <Welcome>Welcome to {myData.name}, learning page!</Welcome>
         <What>Course Overview</What>
 
         <Info>Syllabus</Info>
         <What>WHAT WILL YOU LEARN</What>
 
-        {myData?.scheme?.map((props, i) => (
+        {myData.scheme?.map((props, i) => (
           <Table>
             <TableTitle1>{i}.</TableTitle1>
             <TableTitle>{props.title}</TableTitle>
@@ -56,7 +43,7 @@ export const CourseDetail = () => {
         <MentorAnchor>Mentors</MentorAnchor>
         <MentorSub>Be Mentored by some of the best in the industry</MentorSub>
         <MentorsPix>
-          {myData?.instructor?.map((props, i) => (
+          {myData.intructors?.map((props, i) => (
             <PixHolder>
               <ImagePix src={props.img} />
               <MentorName>{props.name}</MentorName>
@@ -101,6 +88,7 @@ const Mentor = styled.div`
 const ImagePix = styled.img`
   width: 200px;
   height: 200px;
+  /* background-color: red; */
   border-radius: 50%;
   margin: 20px;
   border: 4px dashed gray;
@@ -192,6 +180,7 @@ const Infomation = styled.div`
 
   div {
     margin: 20px 0px;
+    /* margin-bottom: 80px; */
   }
 
   @media screen and (max-width: 600px) {
@@ -232,8 +221,9 @@ const Image = styled.img`
   width: 500px;
   min-width: 300px;
   height: 400px;
+  object-fit: contain;
+  background-color: red;
   margin: 0 10px;
-  object-fit: cover;
 `;
 
 const Desc = styled.div`

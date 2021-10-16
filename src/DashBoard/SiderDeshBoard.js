@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { AiFillHome } from "react-icons/ai";
+import { RiLogoutCircleLine } from "react-icons/ri";
+import { BsFillBookFill, BsFillBookmarkCheckFill } from "react-icons/bs";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
+import { app } from "./../base";
 
 export const SiderDeshBoard = () => {
   const [toggle, setToggle] = useState(true);
@@ -23,29 +26,31 @@ export const SiderDeshBoard = () => {
           <Wrapper>
             <Logo />
             <Navigation>
-              <Nav>
+              <Nav to="/">
                 <Icon>
                   <AiFillHome />
                 </Icon>
                 <span>Home</span>
               </Nav>
-              <Nav>
+              <Nav to="/courses">
                 <Icon>
-                  <AiFillHome />
+                  <BsFillBookFill />
                 </Icon>
-                <span>Home</span>
+                <span>All Courses</span>
+              </Nav>
+              <Nav to="/courses">
+                <Icon>
+                  <BsFillBookmarkCheckFill />
+                </Icon>
+                <span>My CourseList</span>
               </Nav>
               <Nav>
-                <Icon>
-                  <AiFillHome />
+                <Icon
+                  style={{ fontSize: "30px", color: "red", marginTop: "10px" }}
+                >
+                  <RiLogoutCircleLine />
                 </Icon>
-                <span>Home</span>
-              </Nav>
-              <Nav>
-                <Icon>
-                  <AiFillHome />
-                </Icon>
-                <span>Home</span>
+                <span>Log Out</span>
               </Nav>
             </Navigation>
 
@@ -59,25 +64,31 @@ export const SiderDeshBoard = () => {
           <Wrapper1>
             <Logo1 />
             <Navigation1>
-              <Nav>
-                <Icon>
+              <Nav to="/">
+                <Icon1>
                   <AiFillHome />
-                </Icon>
+                </Icon1>
               </Nav>
-              <Nav>
-                <Icon>
+              <Nav to="/courses">
+                <Icon1>
                   <AiFillHome />
-                </Icon>
+                </Icon1>
               </Nav>
-              <Nav>
-                <Icon>
+              <Nav to="/">
+                <Icon1>
                   <AiFillHome />
-                </Icon>
+                </Icon1>
               </Nav>
-              <Nav>
-                <Icon>
-                  <AiFillHome />
-                </Icon>
+              <Nav
+                style={{ fontSize: "30px", color: "red", marginTop: "50px" }}
+              >
+                <Icon1
+                  onClick={() => {
+                    app.auth().signOut();
+                  }}
+                >
+                  <RiLogoutCircleLine />
+                </Icon1>
               </Nav>
             </Navigation1>
 
@@ -105,9 +116,20 @@ const Logo1 = styled.img`
   margin: 30px auto;
 `;
 
+const Icon1 = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+`;
+
 const Navigation1 = styled.div`
   margin-top: 30px;
   flex: 1;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 const Navigation = styled.div`
   margin-top: 30px;
@@ -128,7 +150,7 @@ const Arrow = styled.div`
   }
 `;
 
-const Nav = styled.div`
+const Nav = styled(Link)`
   display: flex;
   width: 80%;
   height: 60px;
@@ -138,6 +160,9 @@ const Nav = styled.div`
   align-items: center;
   transition: all 350ms;
   transform: scale(1);
+  padding-left: 10px;
+  text-decoration: none;
+  color: black;
 
   :hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -175,6 +200,7 @@ const Wrapper1 = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const MainContainer = styled.div`
@@ -183,7 +209,9 @@ const MainContainer = styled.div`
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: lightblue;
+  /* background-color: lightblue; */
+  position: fixed;
+  z-index: 1;
 `;
 const Wrapper = styled.div`
   flex: 1;

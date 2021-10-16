@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { AiFillHome, AiFillAppstore, AiFillContacts } from "react-icons/ai";
+import {
+  AiFillDashboard,
+  AiFillHome,
+  AiFillAppstore,
+  AiFillContacts,
+} from "react-icons/ai";
 import { BsFillBookFill } from "react-icons/bs";
 import { GiHamburgerMenu, GiSkills } from "react-icons/gi";
 import logo from "../assets/b.png";
 import SiderBar from "./SiderBar";
 import Fade from "react-reveal";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./../../Register/AuthProvider";
+import { app } from "./../../base";
 
 const HeaderNav = ({ bg }) => {
+  const { currentUser } = useContext(AuthContext);
+
+  const signOut = async () => {
+    await app.auth().signOut();
+  };
+
   const [toggle, setToggle] = useState(false);
 
   const onToggle = () => {
     setToggle(!toggle);
   };
+
+  console.log("data: ", currentUser);
+
   return (
     <Container
       bg={bg}
@@ -30,13 +46,13 @@ const HeaderNav = ({ bg }) => {
             </Icon>
             <span>Home</span>
           </Nav>
-          <Nav to="/">
+          {/* <Nav to="/">
             <Icon>
               {" "}
               <BsFillBookFill />{" "}
             </Icon>
             <span>About</span>
-          </Nav>
+          </Nav> */}
 
           <LogIn to="/courses">
             <Icon>
@@ -52,8 +68,24 @@ const HeaderNav = ({ bg }) => {
             </Icon>
             Hire Talent
           </LogIn>
+          {currentUser ? (
+            <LogIn to="/dashboard" bg>
+              <Icon>
+                {" "}
+                <AiFillDashboard />{" "}
+              </Icon>
+              DashBoard
+            </LogIn>
+          ) : null}
         </Navigation>
-        <LogIn to="/register">Sign Up</LogIn>
+
+        {currentUser ? (
+          <LogIn to="/" onClick={signOut}>
+            Sign Out
+          </LogIn>
+        ) : (
+          <LogIn to="/register">Sign In</LogIn>
+        )}
         <Menu>
           <GiHamburgerMenu onClick={onToggle} />
         </Menu>
@@ -116,6 +148,8 @@ const Menu = styled.div`
 
 const Icon = styled.div`
   margin-right: 5px;
+  font-size: 19px;
+  margin-top: 5px;
 `;
 
 const Nav = styled(Link)`

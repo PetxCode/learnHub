@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import { Button } from "antd";
-import { app } from "./base";
+
 import styled from "styled-components";
+import { app } from "./../../base";
 
 const db = app.firestore().collection("stack");
 

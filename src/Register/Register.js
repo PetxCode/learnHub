@@ -1,106 +1,312 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
+import { app } from "./../base";
+import firebase from "firebase";
+import LinearProgress from "@mui/material/LinearProgress";
+import CircularProgress from "@mui/material/CircularProgress";
+// CircularProgress
+import avatarProfile from "./avatar.png";
+import { useHistory } from "react-router-dom";
 
 export const Register = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [image, setImage] = useState("simple.png");
-  const [toggle, setToggle] = useState(false);
+  const [avatar, setAvatar] = useState("");
+  const [error, setError] = useState("");
+  const [image, setImage] = useState(avatarProfile);
+  const [toggle, setToggle] = useState(true);
+  const [chn, setChn] = useState(false);
+
+  const [percent, setPercent] = useState(0.0000001);
+
+  const onChn = () => {
+    setChn(!chn);
+  };
 
   const onToggle = () => {
     setToggle(!toggle);
   };
 
-  const uploadImage = (e) => {
+  const uploadImage = async (e) => {
     const file = e.target.files[0];
     const savePix = URL.createObjectURL(file);
     setImage(savePix);
+
+    const fileRef = await app.storage().ref();
+    const storageRef = fileRef.child("avatar/" + file.name).put(file);
+
+    storageRef.on(
+      firebase.storage.TaskEvent.STATE_CHANGED,
+      (snapShot) => {
+        const counter = (snapShot.bytesTransferred / snapShot.totalBytes) * 100;
+
+        setPercent(counter);
+        console.log(counter);
+      },
+      (err) => console.log(err.message),
+      () => {
+        storageRef.snapshot.ref.getDownloadURL().then((URL) => {
+          setAvatar(URL);
+          console.log(URL);
+        });
+      }
+    );
+  };
+
+  const signUpUser = async () => {
+    try {
+      const authUser = await app
+        .auth()
+        .createUserWithEmailAndPassword(email, password);
+
+      if (authUser) {
+        await app
+          .firestore()
+          .collection("dataBaseUsers")
+          .doc(authUser.user.uid)
+          .set({
+            email,
+            password,
+            name,
+            avatar,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdBy: authUser.user.uid,
+          });
+      }
+      history.push("/dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const signInUser = async () => {
+    try {
+      await app.auth().signInWithEmailAndPassword(email, password);
+      history.push("/dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const signInUserWithGoogle = async () => {
+    try {
+      const userProvider = new firebase.auth.GoogleAuthProvider();
+      const authUser = await app.auth().signInWithPopup(userProvider);
+      // console.log(authUser);
+
+      if (authUser) {
+        await app
+          .firestore()
+          .collection("dataBaseUsers")
+          .doc(authUser.user.uid)
+          .set({
+            email: authUser.user.email,
+            name: authUser.user.displayName,
+            avatar: authUser.user.photoURL,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdBy: authUser.user.uid,
+          });
+      }
+      history.push("/dashboard");
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
     <Container>
-      <Wrapper>
-        <Title>Log in to your account</Title>
-        <Card>
-          <Holder>
-            {" "}
-            <Image src={image} />
-            <ImageLable htmlFor="pix">Upload your Image </ImageLable>
-            <ImageInput type="file" id="pix" />
-          </Holder>
-          <Label>Name</Label>
-          <MainInput
-            placeholder="Enter your Name"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-          <Label>Email</Label>
-          <MainInput
-            placeholder="Enter your Email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <Label>Password</Label>
-          {toggle ? (
-            <PassHold>
-              <MainInputPass
-                placeholder="Enter your Password"
-                value={password}
-                type="password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <MdVisibility
-                style={{
-                  cursor: "pointer",
-                  marginRight: "10px",
-                }}
-                onClick={onToggle}
-              />
-            </PassHold>
-          ) : (
-            <PassHold>
-              <MainInputPass
-                placeholder="Enter your Password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <MdVisibilityOff
-                style={{
-                  marginRight: "10px",
-                  cursor: "pointer",
-                }}
-                onClick={onToggle}
-              />
-            </PassHold>
-          )}
+      {chn ? (
+        <Wrapper>
+          <Title>
+            Already have an account yet,{" "}
+            <span onClick={onChn}>Click here to Sign-In</span>
+          </Title>
+          <Card>
+            <Holder>
+              {" "}
+              <Image src={image} />
+              <ImageHolder>
+                {percent > 0.0000001 && percent <= 99 ? (
+                  <ImageHolder>
+                    <LinearProgress
+                      // color="secondary"
+                      variant="determinate"
+                      value={percent}
+                    />
+                  </ImageHolder>
+                ) : null}
+              </ImageHolder>
+              <ImageLable htmlFor="pix">Upload your Image </ImageLable>
+              <ImageInput type="file" id="pix" onChange={uploadImage} />
+            </Holder>
+            <Label>Name</Label>
+            <MainInput
+              placeholder="Enter your Name"
+              value={name}
+              onChange={(e) => {
+                setName(e.target.value);
+              }}
+            />
+            <Label>Email</Label>
+            <MainInput
+              placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <Label>Password</Label>
+            {toggle ? (
+              <PassHold>
+                <MainInputPass
+                  placeholder="Enter your Password"
+                  value={password}
+                  type="password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <MdVisibility
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    color: "gray",
+                    fontSize: "20px",
+                  }}
+                  onClick={onToggle}
+                />
+              </PassHold>
+            ) : (
+              <PassHold>
+                <MainInputPass
+                  placeholder="Enter your Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <MdVisibilityOff
+                  style={{
+                    marginRight: "10px",
+                    cursor: "pointer",
+                    color: "gray",
+                    fontSize: "20px",
+                  }}
+                  onClick={onToggle}
+                />
+              </PassHold>
+            )}
 
-          <Button bg="#09386d">Register</Button>
+            <Button bg="#09386d" onClick={signUpUser}>
+              Register
+            </Button>
 
-          <Line />
+            <Line />
 
-          <Button>
-            <FcGoogle />
-            <span>Register with Google</span>
-          </Button>
-        </Card>
-      </Wrapper>
+            <Button bg1="red" onClick={signInUserWithGoogle}>
+              <FcGoogle />
+              <span>Register with Google</span>
+            </Button>
+          </Card>
+        </Wrapper>
+      ) : (
+        <Wrapper>
+          <Title>
+            Don't have an account,{" "}
+            <span onClick={onChn}>Click here to Create one</span>
+          </Title>
+          <Card>
+            <Label>Email</Label>
+            <MainInput
+              placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <Label>Password</Label>
+            {toggle ? (
+              <PassHold>
+                <MainInputPass
+                  placeholder="Enter your Password"
+                  value={password}
+                  type="password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <MdVisibility
+                  style={{
+                    cursor: "pointer",
+                    marginRight: "10px",
+                    color: "gray",
+                    fontSize: "20px",
+                  }}
+                  onClick={onToggle}
+                />
+              </PassHold>
+            ) : (
+              <PassHold>
+                <MainInputPass
+                  placeholder="Enter your Password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <MdVisibilityOff
+                  style={{
+                    marginRight: "10px",
+                    cursor: "pointer",
+                    color: "gray",
+                    fontSize: "20px",
+                  }}
+                  onClick={onToggle}
+                />
+              </PassHold>
+            )}
+            {error ? (
+              <ErrorDiv>Your Email or Password, doesn't match </ErrorDiv>
+            ) : null}
+            <Button bg="#09386d" onClick={signInUser}>
+              Sign In
+            </Button>
+
+            <Line />
+
+            <Button bg1="red" onClick={signInUserWithGoogle}>
+              <FcGoogle />
+              <span>Sign in with Google</span>
+            </Button>
+          </Card>
+        </Wrapper>
+      )}
     </Container>
   );
 };
 
 // const Button = styled.div``
+
+const ErrorDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+`;
+
+const ImageHolder = styled.div`
+  width: 150px;
+  height: 5px;
+  /* display: flex; */
+  /* background-color: coral; */
+`;
+
 const Line = styled.div`
   border-top: 1px solid lightgray;
   width: 90%;
@@ -112,7 +318,8 @@ const Button = styled.div`
   margin: 20px auto;
   margin-top: 40px;
   background-color: ${({ bg }) => bg};
-  border: 2px solid #09386d;
+  border: 2px solid;
+  border-color: ${({ bg1 }) => bg1};
   width: 80%;
   height: 60px;
   justify-content: center;
@@ -123,9 +330,15 @@ const Button = styled.div`
   transition: all 350ms;
   transform: scale(1);
   border-radius: 3px;
+  font-weight: bold;
+
+  span {
+    color: ${({ bg1 }) => bg1};
+  }
 
   :hover {
     transform: scale(0.99);
+    cursor: pointer;
   }
 
   span {
@@ -139,13 +352,17 @@ const PassHold = styled.div`
   width: 80%;
   margin: 0 auto;
   align-items: center;
-
   padding-right: 10px;
+  border-radius: 3px;
+
+  :hover {
+    border: 2px solid #14297c;
+  }
 `;
 
 const MainInputPass = styled.input`
   /* width: 80%; */
-  height: 40px;
+  height: 30px;
   margin: 0 auto;
   border: 0;
   outline: none;
@@ -156,10 +373,6 @@ const MainInputPass = styled.input`
   ::placeholder {
     font-family: Raleway;
     color: lightgray;
-  }
-
-  :hover {
-    /* border: 2px solid #14297c; */
   }
 `;
 
@@ -173,21 +386,24 @@ const Image = styled.img`
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 4px solid lightblue;
+  border: 4px solid #09386d;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 const ImageInput = styled.input`
   display: none;
 `;
 const ImageLable = styled.label`
-  background-color: coral;
+  background-color: #09386d;
   padding: 10px 15px;
   border-radius: 30px;
   color: white;
   font-weight: bold;
   transform: scale(1);
   transition: all 350ms;
+  margin-top: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
   :hover {
     transform: scale(0.97);
@@ -221,6 +437,7 @@ const MainInput = styled.input`
 `;
 
 const Card = styled.div`
+  padding-bottom: 20px;
   width: 600px;
   background-color: white;
   height: 700px;
@@ -228,12 +445,26 @@ const Card = styled.div`
   padding-top: 70px;
   display: flex;
   flex-direction: column;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+
+  @media screen and (max-width: 600px) {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.div`
-  font-weight: bold;
+  /* font-weight: bold; */
   margin: 20px;
   font-size: 20px;
+
+  span {
+    cursor: pointer;
+    color: #09386d;
+    font-weight: bold;
+  }
 `;
 
 const Wrapper = styled.div`

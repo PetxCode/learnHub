@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { AiFillHome, AiFillAppstore, AiFillContacts } from "react-icons/ai";
 import { BsFillBookFill } from "react-icons/bs";
 import { GiHamburgerMenu, GiSkills } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./../../Register/AuthProvider";
+import { app } from "./../../base";
 
 const SiderBar = ({ setToggle }) => {
+  const { currentUser } = useContext(AuthContext);
+
+  const signOut = async () => {
+    await app.auth().signOut();
+  };
+
   return (
     <MainContainer
       onClick={() => {
@@ -47,7 +55,13 @@ const SiderBar = ({ setToggle }) => {
             </LogIn>
           </Navigation>
 
-          <LogIn to="/register">Sign Up</LogIn>
+          {currentUser ? (
+            <LogIn to="/" onClick={signOut}>
+              Sign Out
+            </LogIn>
+          ) : (
+            <LogIn to="/register">Sign In</LogIn>
+          )}
         </Wrapper>
       </Container>
     </MainContainer>
