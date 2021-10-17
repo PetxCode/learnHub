@@ -11,14 +11,26 @@ import { Link } from "react-router-dom";
 import arr from "../Component/assets/arr.png";
 
 // import img9 from "img/uban.jpg";
+import { app } from "./../base";
 
 const StudentDetail = () => {
   const { id } = useParams();
-
   const [myData, setMyData] = React.useState([]);
 
+  const fetchDataDetail = async (id) => {
+    await app
+      .firestore()
+      .collection("hire")
+      .doc(id)
+      .get()
+      .then((file) => {
+        setMyData(file.data());
+        console.log("firebase data: ", myData);
+      });
+  };
+
   React.useEffect(() => {
-    setMyData(data[id - 1]);
+    fetchDataDetail(id);
   }, []);
 
   console.log(myData);
@@ -51,7 +63,7 @@ const StudentDetail = () => {
                   </Name>
                   <Abt>{props.desc}</Abt>
                   <Stack>
-                    {props.Tech.map((props, i) => (
+                    {props.tech?.map((props, i) => (
                       <StackFile>{props.title}</StackFile>
                     ))}
                   </Stack>
@@ -129,7 +141,7 @@ const StudentDetail = () => {
                     </Name>
                     <Abt>{props.desc}</Abt>
                     <Stack>
-                      {props.Tech.map((props, i) => (
+                      {props.tech?.map((props, i) => (
                         <StackFile>{props.title}</StackFile>
                       ))}
                       {/* <StackFile>stack</StackFile>

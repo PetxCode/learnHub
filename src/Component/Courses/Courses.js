@@ -3,8 +3,28 @@ import styled from "styled-components";
 import img from "./learning.svg";
 import data from "./course.json";
 import { Link } from "react-router-dom";
+import { app } from "./../../base";
 
 const Courses = () => {
+  const [courseData, setCourseData] = React.useState([]);
+
+  const fetchData = async () => {
+    await app
+      .firestore()
+      .collection("course")
+      .onSnapshot((snapShot) => {
+        const i = [];
+        snapShot.forEach((doc) => {
+          i.push({ ...doc.data(), id: doc.id });
+        });
+        setCourseData(i);
+      });
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Container>
       <Wrapper>
@@ -17,7 +37,7 @@ const Courses = () => {
         </CourseTop>
 
         <MainCourses>
-          {data?.map((props, i) => (
+          {courseData?.map((props, i) => (
             <CourseCard>
               <Icon src={props.icon} />
               <Content>

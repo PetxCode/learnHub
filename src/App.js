@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import HeaderNav from "./Component/Header/HeaderNav";
 import ExpertSkills from "./Component/Expert/ExpertSkills";
@@ -12,8 +12,13 @@ import StudentDetail from "./HirePage/StudentDetail";
 import Detail from "./HirePage/Detail";
 import Courses from "./Component/Courses/Courses";
 import { CourseDetail } from "./Component/Courses/CourseDetail";
+import { Register } from "./Register/Register";
+import { PrivateRoute } from "./Register/PrivateRoute";
+import { AuthContext } from "./Register/AuthProvider";
+import { SiderDeshBoard } from "./DashBoard/SiderDeshBoard";
 
 const App = () => {
+  const { currentUser } = useContext(AuthContext);
   const [toggle, setToggle] = useState(false);
 
   const onToggle = () => {
@@ -22,7 +27,6 @@ const App = () => {
 
   const onHandle = () => {
     const check = window.scrollY;
-    console.log(check);
     if (check >= 41) {
       setToggle(true);
     } else {
@@ -36,10 +40,12 @@ const App = () => {
     <Container>
       <BrowserRouter>
         <HeaderNav bg={toggle ? "bg" : ""} />
+
         <Switch>
           <Route path="/" exact component={HomeScreenComp} />
+          <Route path="/register" exact component={Register} />
           <Route path="/hire" exact component={HirePage} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <PrivateRoute path="/dashboard" exact component={Dashboard} />
           <Route path="/student/:id" exact component={StudentDetail} />
           <Route path="/courses" exact component={Courses} />
           <Route path="/courses/:id" exact component={CourseDetail} />

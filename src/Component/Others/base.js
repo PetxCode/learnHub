@@ -1,8 +1,8 @@
-import firebase from "firebase";
+import firebase1 from "firebase";
 import "firebase/firestore";
 import "firebase/auth";
 
-export const app = firebase.initializeApp({
+export const appStack = firebase1.initializeApp({
   apiKey: "AIzaSyC1frbRtAu63tzhjgxcGk4uUc6-HvqKjEU",
   authDomain: "platform-tool.firebaseapp.com",
   projectId: "platform-tool",

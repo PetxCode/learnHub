@@ -54,16 +54,29 @@ const Button = styled.div`
 
 const Image = styled.img`
   width: 600px;
-  min-width: 280px;
   min-height: 400px;
-  /* height: 600px; */
   object-fit: contain;
-  margin: 10px auto;
+  margin: 10px 0;
+
+  @media screen and (max-width: 1000px) {
+    width: 300px;
+    /* background-color: #09386d; */
+    margin: 0;
+    /* display: none; */
+  }
 `;
 const Content = styled.div`
   width: 600px;
-  /* min-width: 300px; */
+  min-width: 300px;
   margin: 0 20px;
+  /* display:none */
+
+  @media screen and (max-width: 1000px) {
+    width: 300px;
+    margin: 0 0;
+
+    /* display: none; */
+  }
 `;
 const Title = styled.div`
   font-size: 40px;

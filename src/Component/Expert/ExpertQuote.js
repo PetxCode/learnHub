@@ -28,4 +28,8 @@ const Container = styled.div`
     background-color: #d7e2cf;
   }
 `;
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
